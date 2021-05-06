@@ -83,7 +83,9 @@ public class EmplyeeControllerV1 {
 		return "Employee v1 Updated!!";
 	}
 
-	public String delete() {
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable int id) {
 		return "Employee v1 delete!!";
 	}
 }
