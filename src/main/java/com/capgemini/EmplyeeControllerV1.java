@@ -8,33 +8,35 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.entities.Employee;
 import com.capgemini.repository.EmployeeRepository;
 
-// http://localhost:8080/employee
 @RestController
-@RequestMapping("/employee/")
-public class EmployeeController {
+@RequestMapping("/employee/v1/")
+public class EmplyeeControllerV1 {
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-	// http://localhost:8080/employee/create
 	@GetMapping("/create")
-	public String create() {
-		// logic for create
-		return "Record Added!!";
+	public String create(String name, String email, String mobile) {
+		
+		Employee e = new Employee();
+		e.setName(name);
+		e.setEmail(email);
+		e.setMobile(mobile);
+		
+		// adding record
+		employeeRepository.save(e);
+		
+		
+		return "Employee V1 Created";
 	}
 	
-	// http://localhost:8080/employee/update
-	@GetMapping("/update")
+	
 	public String update() {
-		// logic for update
-		return "Record Updated!!";
+		return "Employee v1 Updated!!";
 	}
 	
 	
-	// http://localhost:8080/employee/delete
-	@GetMapping("/delete")
 	public String delete() {
-		// logic for delete
-		return "Record Deleted!!";
+		return "Employee v1 delete!!";
 	}
 }
